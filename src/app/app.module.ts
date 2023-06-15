@@ -4,16 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { appRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { LoanApplicationComponent } from './pages/loan-application/loan-application.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoanApplicationModule } from './pages/loan-application/loan-application.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoanApplicationComponent
   ],
   imports: [
+    LoanApplicationModule,
     BrowserModule,
     appRoutingModule,
+    BrowserAnimationsModule,
 
   ],
   providers: [],

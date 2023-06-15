@@ -29,3 +29,10 @@ html{
     grid-column: auto/span 8;
   }
 
+  .col-12 {
+    grid-column: auto/span 12;
+  }
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -6,19 +6,81 @@
 
     <div class="col-8">
 
+      <mat-card>
+        <mat-card-content>
+          <h1>Formulário de Solicitação de Empréstimo</h1>
 
-    <h1>Formulário de Solicitação de Empréstimo</h1>
 
 
-  <form>
-    <label for="fname">Nome do solicitante:</label><br>
-    <input type="text" id="fname" name="fname"><br>
-    <label for="lname">Valor desejado:</label><br>
-    <input type="text" id="lname" name="lname"><br>
-    <label for="lname">Número de parcelas:</label><br>
-    <input type="text" id="lname" name="lname"><br><br>
-    <button type="submit" value="Submit">Simular empréstimo</button>
-  </form>
+          <form [formGroup]="loanForm">
+
+            <div class="grid">
+              <div class="col-12">
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>Nome do solicitante</mat-label>
+                  <input formControlName="name" matInput>
+                  <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="grid">
+              <div class="col-12">
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>Valor desejado</mat-label>
+                  <input formControlName="value" matInput>
+                  <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="grid">
+              <div class="col-12">
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label>Número de parcelas</mat-label>
+                  <input formControlName="parcelNumber" matInput>
+                  <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+              </div>
+            </div>
+
+
+
+
+            <button mat-raised-button color="primary" [disabled]="!loanForm.valid" type="button" (click)="mockSimulateLoan()">Simular empréstimo</button>
+
+          </form>
+
+        </mat-card-content>
+      </mat-card>
+
+
+
+
+      <mat-card *ngIf="hasLoading">
+        <mat-card-content>
+          <p >Carregando...</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card *ngIf="simulatedLoan">
+        <mat-card-content>
+          <div>
+            <p>{{ 'Valor das parcelas: ' + simulatedLoan.parcelValues }}</p>
+            <p>{{ 'Nº de parcelas: ' + simulatedLoan.parcelNumber }}</p>
+            <p>{{ 'Valor total com juros: ' + simulatedLoan.total }}</p>
+          </div>
+
+          <button mat-raised-button color="primary" [disabled]="!simulatedLoan" type="button" (click)="openDialog()">Confirmar</button>
+
+        </mat-card-content>
+      </mat-card>
+
+
+
+
+
+
 
   </div>
   <div class="col-2 row-2"></div>

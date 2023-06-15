@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Confirmar empréstimo</h1>
+<div mat-dialog-content>
+  Confirme seu empréstimo:
+  <ul>
+    <li>
+      {{ 'Valor das parcelas: ' + loanApplicationServiceData.parcelValues }}
+      <span>&#10003;</span>
+    </li>
+    <li>
+      {{ 'Nº de parcelas: ' + loanApplicationServiceData.parcelNumber }}
+      <span>&#10003;</span>
+    </li>
+    <li>
+      {{ 'Valor total com juros: ' + loanApplicationServiceData.total }}
+      <span>&#10003;</span>
+    </li>
+
+    <p></p>
+    <p></p>
+    <p></p>
+
+    <div mat-dialog-actions>
+      <button mat-button (click)="confirm()" mat-dialog-close>Confirmar</button>
+      <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
+    </div>
+  </ul>
+</div>
