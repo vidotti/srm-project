@@ -7,18 +7,20 @@ import { LoanApplicationService } from '../../service/loan-application.service';
 import { Loan } from '../../models/loan.type';
 
 export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion';
+  clientName: string | null | undefined;
 }
 
 @Component({
   selector: 'dialog-data-example-dialog',
   templateUrl: './dialog.component.html',
   standalone: true,
-  imports: [MatDialogModule, NgIf],
+  imports: [MatDialogModule, NgIf, MatButtonModule],
 })
 export class DialogDataExampleDialog {
 
   public loanApplicationServiceData!: Loan;
+
+  dialogData!: DialogData;
 
   constructor(
     private router: Router,
@@ -26,6 +28,8 @@ export class DialogDataExampleDialog {
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
     this.loanApplicationServiceData = this.loanAppService.loanApplicationData;
+
+    this.dialogData = this.data;
   }
 
   confirm(){

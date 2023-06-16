@@ -3,6 +3,17 @@ html{
 	font-family: Arial, Helvetica, sans-serif;
 	}
 
+
+  .mat-error {
+    align-items: flex-start;
+    display: flex !important;
+  }
+
+
+  .mat-form-field-subscript-wrapper {
+    display: none;
+  }
+
   .grid {
     margin: 1em;
     // border: solid #d3d3d3;

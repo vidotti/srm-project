@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Loan } from '../models/loan.type';
 import { LoanApplicationService } from '../service/loan-application.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-success-page',
@@ -11,8 +12,15 @@ export class SuccessPageComponent {
 
   public loanApplicationServiceData!: Loan;
 
-  constructor(private loanAppService: LoanApplicationService){
+  constructor(
+    private router: Router,
+    private loanAppService: LoanApplicationService
+    ){
     this.loanApplicationServiceData = this.loanAppService.loanApplicationData;
+  }
+
+  goToLoanApplication(){
+    this.router.navigate(['/loan-application']);
   }
 
 }

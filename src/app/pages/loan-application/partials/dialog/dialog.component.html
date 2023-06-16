@@ -1,5 +1,10 @@
 <h1 mat-dialog-title>Confirmar empréstimo</h1>
 <div mat-dialog-content>
+
+
+  <p>Olá, {{dialogData?.clientName ?? 'Cliente'}}</p>
+
+
   Confirme seu empréstimo:
   <ul>
     <li>
@@ -15,13 +20,9 @@
       <span>&#10003;</span>
     </li>
 
-    <p></p>
-    <p></p>
-    <p></p>
-
     <div mat-dialog-actions>
-      <button mat-button (click)="confirm()" mat-dialog-close>Confirmar</button>
-      <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
+      <button mat-raised-button color="primary" (click)="confirm()" mat-dialog-close>Confirmar</button>
+      <button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial>Cancelar</button>
     </div>
   </ul>
 </div>

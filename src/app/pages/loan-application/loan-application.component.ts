@@ -42,12 +42,13 @@ export class LoanApplicationComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogDataExampleDialog);
+    const dialogRef = this.dialog.open(DialogDataExampleDialog,
+      {
+        data: { clientName: this.loanForm.get('name')?.value },
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    // });
   }
 
 
@@ -61,10 +62,19 @@ export class LoanApplicationComponent implements OnInit {
 
 
   mockSimulateLoan(): void {
+
+    const { name, value, parcelNumber } = this.loanForm.getRawValue();
+
+    const params = {
+      name,
+      value,
+      parcelNumber
+    }
+
     this.hasLoading = true;
-    this.mockService.mockSimulateLoan().subscribe({
+    this.mockService.mockSimulateLoan(params).subscribe({
       next: (simulatedLoan) => {
-        console.log(simulatedLoan);
+        // console.log(simulatedLoan);
         this.hasLoading = false;
         this.simulatedLoan = simulatedLoan;
         this.setServiceLoanData(this.simulatedLoan);

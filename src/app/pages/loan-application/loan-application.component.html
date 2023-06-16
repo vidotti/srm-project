@@ -1,61 +1,59 @@
-<section>
+<section class="loan-section">
   <div class="grid">
 
     <div class="col-2 row-2"></div>
 
-
     <div class="col-8">
 
-      <mat-card>
+      <mat-card class="loan-application">
         <mat-card-content>
           <h1>Formulário de Solicitação de Empréstimo</h1>
-
-
+          <p>Preencha os campos abaixo:</p>
 
           <form [formGroup]="loanForm">
 
-            <div class="grid">
-              <div class="col-12">
+            <div class="">
+              <div class="">
                 <mat-form-field class="form-field" appearance="outline">
                   <mat-label>Nome do solicitante</mat-label>
-                  <input formControlName="name" matInput>
+                  <input maxlength="100" formControlName="name" matInput>
+                  <mat-error class="mat-error">Campo obrigatório</mat-error>
                   <!-- <mat-hint>Hint</mat-hint> -->
                 </mat-form-field>
               </div>
             </div>
 
-            <div class="grid">
-              <div class="col-12">
+            <div class="">
+              <div class="">
                 <mat-form-field class="form-field" appearance="outline">
                   <mat-label>Valor desejado</mat-label>
-                  <input formControlName="value" matInput>
+                  <input maxlength="9" currencyMask [options]="{ align: 'left', prefix: 'R$ ', thousands: '.', decimal: ',' }" formControlName="value" matInput>
+                  <mat-error class="mat-error">Campo obrigatório</mat-error>
                   <!-- <mat-hint>Hint</mat-hint> -->
                 </mat-form-field>
               </div>
             </div>
 
-            <div class="grid">
-              <div class="col-12">
+            <div class="">
+              <div class="">
                 <mat-form-field class="form-field" appearance="outline">
                   <mat-label>Número de parcelas</mat-label>
-                  <input formControlName="parcelNumber" matInput>
+                  <input maxlength="3" formControlName="parcelNumber" matInput>
+                  <mat-error class="mat-error">Campo obrigatório</mat-error>
                   <!-- <mat-hint>Hint</mat-hint> -->
                 </mat-form-field>
               </div>
             </div>
 
-
-
-
-            <button mat-raised-button color="primary" [disabled]="!loanForm.valid" type="button" (click)="mockSimulateLoan()">Simular empréstimo</button>
-
+            <button
+              mat-raised-button color="primary"
+              [disabled]="!loanForm.valid"
+              type="button"
+              (click)="mockSimulateLoan()">Simular empréstimo</button>
           </form>
 
         </mat-card-content>
       </mat-card>
-
-
-
 
       <mat-card *ngIf="hasLoading">
         <mat-card-content>
@@ -63,9 +61,10 @@
         </mat-card-content>
       </mat-card>
 
-      <mat-card *ngIf="simulatedLoan">
+      <mat-card *ngIf="simulatedLoan && !hasLoading">
         <mat-card-content>
           <div>
+            <p>Valor calculado com 5% de juros:</p>
             <p>{{ 'Valor das parcelas: ' + simulatedLoan.parcelValues }}</p>
             <p>{{ 'Nº de parcelas: ' + simulatedLoan.parcelNumber }}</p>
             <p>{{ 'Valor total com juros: ' + simulatedLoan.total }}</p>
@@ -75,12 +74,6 @@
 
         </mat-card-content>
       </mat-card>
-
-
-
-
-
-
 
   </div>
   <div class="col-2 row-2"></div>
