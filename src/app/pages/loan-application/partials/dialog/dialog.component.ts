@@ -20,7 +20,7 @@ export class DialogDataExampleDialog {
 
   public loanApplicationServiceData!: Loan;
 
-  dialogData!: DialogData;
+  dialogData!: DialogData | null;
 
   constructor(
     private router: Router,

@@ -11,38 +11,31 @@
           <p>Preencha os campos abaixo:</p>
 
           <form [formGroup]="loanForm">
-
             <div class="">
-              <div class="">
-                <mat-form-field class="form-field" appearance="outline">
-                  <mat-label>Nome do solicitante</mat-label>
-                  <input maxlength="100" formControlName="name" matInput>
-                  <mat-error class="mat-error">Campo obrigatório</mat-error>
-                  <!-- <mat-hint>Hint</mat-hint> -->
-                </mat-form-field>
-              </div>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Nome do solicitante</mat-label>
+                <input maxlength="100" formControlName="name" matInput>
+                <mat-error class="mat-error">Campo obrigatório</mat-error>
+                <!-- <mat-hint>Hint</mat-hint> -->
+              </mat-form-field>
             </div>
 
             <div class="">
-              <div class="">
-                <mat-form-field class="form-field" appearance="outline">
-                  <mat-label>Valor desejado</mat-label>
-                  <input maxlength="9" currencyMask [options]="{ align: 'left', prefix: 'R$ ', thousands: '.', decimal: ',' }" formControlName="value" matInput>
-                  <mat-error class="mat-error">Campo obrigatório</mat-error>
-                  <!-- <mat-hint>Hint</mat-hint> -->
-                </mat-form-field>
-              </div>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Valor desejado</mat-label>
+                <input maxlength="9" currencyMask [options]="{ align: 'left', prefix: 'R$ ', thousands: '.', decimal: ',' }" formControlName="value" matInput>
+                <mat-error class="mat-error">Campo obrigatório</mat-error>
+                <!-- <mat-hint>Hint</mat-hint> -->
+              </mat-form-field>
             </div>
 
             <div class="">
-              <div class="">
-                <mat-form-field class="form-field" appearance="outline">
-                  <mat-label>Número de parcelas</mat-label>
-                  <input maxlength="3" formControlName="parcelNumber" matInput>
-                  <mat-error class="mat-error">Campo obrigatório</mat-error>
-                  <!-- <mat-hint>Hint</mat-hint> -->
-                </mat-form-field>
-              </div>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Número de parcelas</mat-label>
+                <input maxlength="3" formControlName="parcelNumber" matInput>
+                <mat-error class="mat-error">Campo obrigatório</mat-error>
+                <!-- <mat-hint>Hint</mat-hint> -->
+              </mat-form-field>
             </div>
 
             <button
@@ -51,7 +44,6 @@
               type="button"
               (click)="mockSimulateLoan()">Simular empréstimo</button>
           </form>
-
         </mat-card-content>
       </mat-card>
 
@@ -60,18 +52,19 @@
           <p >Carregando...</p>
         </mat-card-content>
       </mat-card>
-
       <mat-card *ngIf="simulatedLoan && !hasLoading">
         <mat-card-content>
           <div>
             <p>Valor calculado com 5% de juros:</p>
-            <p>{{ 'Valor das parcelas: ' + simulatedLoan.parcelValues }}</p>
+            <p>{{ 'Valor das parcelas: ' + (simulatedLoan.parcelValues | currency:'BRL':'symbol':'0.2':'pt') }}</p>
             <p>{{ 'Nº de parcelas: ' + simulatedLoan.parcelNumber }}</p>
-            <p>{{ 'Valor total com juros: ' + simulatedLoan.total }}</p>
+            <p>{{ 'Valor total com juros: ' + (simulatedLoan.total | currency:'BRL':'symbol':'0.2':'pt') }}</p>
           </div>
-
-          <button mat-raised-button color="primary" [disabled]="!simulatedLoan" type="button" (click)="openDialog()">Confirmar</button>
-
+          <button
+            mat-raised-button color="primary"
+            [disabled]="!simulatedLoan"
+            type="button"
+            (click)="openDialog()">Confirmar</button>
         </mat-card-content>
       </mat-card>
 

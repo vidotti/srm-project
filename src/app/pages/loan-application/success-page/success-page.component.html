@@ -13,20 +13,13 @@
           <p>Veja abaixo o que você contratou</p>
 
           <div>
-            <p>{{ 'Valor das parcelas: ' + loanApplicationServiceData.parcelValues }}</p>
+            <p>{{ 'Valor das parcelas: ' + (loanApplicationServiceData.parcelValues | currency:'BRL':'symbol':'0.2':'pt') }}</p>
             <p>{{ 'Nº de parcelas: ' + loanApplicationServiceData.parcelNumber }}</p>
-            <p>{{ 'Valor total com juros: ' + loanApplicationServiceData.total }}</p>
+            <p>{{ 'Valor total com juros: ' + (loanApplicationServiceData.total | currency:'BRL':'symbol':'0.2':'pt') }}</p>
           </div>
           <button mat-raised-button color="primary" (click)="goToLoanApplication()">Voltar</button>
         </mat-card-content>
-
       </mat-card>
-
-
-
-
-
-
   </div>
   <div class="col-2 row-2"></div>
 

@@ -17,9 +17,9 @@ export class LoanApplicationService {
   mockSimulateLoan(params: SimulatedLoanParams): Observable<Loan> {
     const parcelValueWithInterestRate = params.value + ((params.value / 100)*5)
     const response = JSON.parse(`{
-    "parcelValues": "R$ ${parcelValueWithInterestRate.toFixed(2)}",
+    "parcelValues": ${parcelValueWithInterestRate.toFixed(2)},
     "parcelNumber": "${params.parcelNumber}",
-    "total": "R$ ${((params.parcelNumber * parcelValueWithInterestRate).toFixed(2))}"
+    "total": ${((params.parcelNumber * parcelValueWithInterestRate).toFixed(2))}
   }`);
 
     let obs = new Observable<Loan>((subscriber) => {
